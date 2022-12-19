@@ -1,0 +1,60 @@
+﻿@model projectFlight.ViewModel.CustomerViewModel
+@using projectFlight.Models;
+
+@{
+    ViewBag.Title = "EnterCustomer";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Enter</title>
+    <link href="~/css/Style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/myScript.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Sumbit", "Customer", FormMethod.Post))
+        {
+
+            <i>First Name:</i>@Html.TextBoxFor(m => m.Customer.firstName)
+            <br />
+            <i>Last Name:</i>@Html.TextBoxFor(m => m.Customer.lastName)
+            <br />
+            <i>Number:</i>@Html.TextBoxFor(m => m.Customer.passportNum)
+            <br />
+            <i>id:</i>@Html.TextBoxFor(m => m.Customer.custId)
+            <br />
+            <i>mail:</i>@Html.TextBoxFor(m => m.Customer.mail)
+            <br />
+            <input id="Submit1" type="submit" value="Add costumer" />
+
+        }
+        <table id="colorDiv">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Customer number</th>
+            </tr>
+            @foreach (Customer cus in Model.Customers)
+            {
+        <tr>
+            <td>@cus.firstName</td>
+            <td>@cus.lastName</td>
+            <td>@cus.passportNum</td>
+            <td>@cus.mail</td>
+            <td>@cus.custId</td>
+        </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
+
+

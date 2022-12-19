@@ -1,0 +1,47 @@
+﻿@model projectFlight.ViewModel.FlightViewModel
+@using projectFlight.Models;
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <form action="SearchFlight" method="post">
+                Enter a country to search: <input id="Text1" name="txtWhere" type="text" />
+
+                <br />
+                Enter a countryFrom to search: <input id="Text2" name="txtFrom" type="text" />
+
+                <br />
+                Enter a  date: <input id="Text1" name="txtDate" type="date" />
+
+                Enter a dateBack: <input id="Text1" name="txtDateBack" type="date" />
+
+
+                              <br />
+                <input id="Submit1" type="submit" value="Search Flight" />
+
+            </form>
+            <br />
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Customer number</th>
+                </tr>
+
+                @foreach (Flight cus in Model.Flights)
+                {
+                    <tr>
+                        <td>@cus.flightId</td>
+                        <td>@cus.flightFrom</td>
+                        <td>@cus.dateFlight</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
