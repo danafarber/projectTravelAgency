@@ -36,5 +36,7 @@ namespace projectFlight.Models
 
         [Column(TypeName = "date")]
         public DateTime? dateBackFlight { get; set; }
+
+        public bool oneWay { get; set; }
     }
 }

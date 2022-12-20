@@ -1,47 +1,144 @@
 ﻿@model projectFlight.ViewModel.FlightViewModel
 @using projectFlight.Models;
 @{
-    ViewBag.Title = "Home Page";
+    //ViewBag.Title = "Home Page";
+    Layout = null;
 }
 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/19bc22f122.js"
+            crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script>
+      $(function () {
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+      });
+    </script>
+    <title>Index</title>
+</head>
+<body>
+    <div id="header"
+         class="bg-gradient-to-br from-blue-900 to-blue-500 h-72"></div>
+    <div class="container mx-auto flex flex-col pt-5 pb-5">
+        <div id="booking"
+             class="mt-10 border p-5 shadow-xl shadow-blue-800/05 rounded-md -translate-y-40 bg-white">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <form class="flex justify-between" action="Index" method="post">
+                        <div class="flex flex-col w-1/5 gap-3">
+                            @Html.LabelFor(m => m.Flight.flightTo, "Destination")
+
+                            <input id="Text1" name="txtWhere" type="text" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
+                        </div>
+
+                        <div class="flex flex-col w-1/5 gap-3">
+                            @Html.LabelFor(m => m.Flight.flightFrom, "From")
+                            <input id="Text2" name="txtFrom" type="text" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
+                        </div>
+                        <div class="flex flex-col w-1/5 gap-3">
+                            @Html.LabelFor(m => m.Flight.dateFlight, "Date")
+                            <input id="Text3" name="txtDate" type="date" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
+                        </div>
+                        <div class="flex flex-col w-1/5 gap-3">
+                            @Html.LabelFor(m => m.Flight.dateBackFlight, "Date Back")
+                            <input id="Text4" name="txtDateBack" type="date" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
+                        </div>
+                        <div class="flex flex-col gap-3">
+
+                            @* @Html.CheckBoxFor(m => m.Flight.oneWay, "One way?")*@
+                            @Html.LabelFor(m => m.Flight.oneWay, "One way?")
+                            <input type="checkbox"
+                                   name="oneWay"
+                                   class="border rounded-sm p-3 w-full focus:border-blue-300 transition ease-in-out" />
+                        </div>
+
+                        <div class="flex flex-col justify-end">
+                            <input id="Submit1" type="submit" value="Search Flight"
+                                   class="rounded-sm p-3 w-full bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out" />
+                        </div>
+                    </form>
 
 
-<div class="row">
-    <div class="col-md-4">
-        <div>
-            <form action="SearchFlight" method="post">
-                Enter a country to search: <input id="Text1" name="txtWhere" type="text" />
+                    @*<div class="mt-10 border p-5 shadow-xl shadow-blue-800/05 rounded-md bg-white flex gap-10 justify-between items-center">
+                        <div class="w-1/4 rounded-md" id="resultImage">
+                            <img src="images/destination-image.jpg" />
+                        </div>
+                        <div class="w-1/4" id="resultContent">
+                            <h2 class="text-xl font-bold">Israel - Spain</h2>
+                            <h3 class="text-sm">01/01/2023 - 04/01/2023</h3>
+                            <h3 class="text-sm font-bold">10:30</h3>
+                            <h3 class="text-sm font-bold">TLV - BAR</h3>
+                            <p class="text-sm mt-5">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, fugit?
+                            </p>
+                        </div>
+                        <div class="w-1/4 text-center" id="resultOrder">
+                            <h2 class="text-md">498$ <span class="text-sm">per person</span></h2>
+                            <h2 class="text-xl font-bold">997$ total</h2>
+                            <button class="rounded-sm mt-5 p-3 w-full bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out">
+                                Order now
+                            </button>
+                        </div>
+                    </div>*@
+                   
+                <div class="mt-10 border p-5 shadow-xl shadow-blue-800/05 rounded-md bg-white flex gap-10 justify-between items-center">
+                    <div class="w-1/4 text-center" id="resultContent">
+                        <div class=" text-xl font-bold">
+                            <table className="padding-table-columns">
+                                <thead>
+                                    <tr>
 
-                <br />
-                Enter a countryFrom to search: <input id="Text2" name="txtFrom" type="text" />
+                                        <th>Flight Number</th>
 
-                <br />
-                Enter a  date: <input id="Text1" name="txtDate" type="date" />
+                                        <th>From</th>
 
-                Enter a dateBack: <input id="Text1" name="txtDateBack" type="date" />
+                                        <th>Destination</th>
+
+                                        <th>Price per preson</th>
+
+                                        <th>Date of depart</th>
+                                       
+                                        <th>Time of depart</th>
 
 
-                              <br />
-                <input id="Submit1" type="submit" value="Search Flight" />
 
-            </form>
-            <br />
-            <table>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Customer number</th>
-                </tr>
+                                        <th>Date of back flight</th>
+                                    </tr>
+                                <thead>
 
-                @foreach (Flight cus in Model.Flights)
-                {
-                    <tr>
-                        <td>@cus.flightId</td>
-                        <td>@cus.flightFrom</td>
-                        <td>@cus.dateFlight</td>
-                    </tr>
-                }
-            </table>
-        </div>
-    </div>
-</div>
+
+                                    @foreach (Flight f in Model.Flights)
+                                    {
+                                        <tr>
+
+
+                                            <td>@f.flightId</td>
+                                            <td>@f.flightFrom</td>
+                                            <td>@f.flightTo</td>
+                                            <td>@f.price</td>
+                                            <td>@f.dateFlight</td>
+                                            <td>@f.timeFlight</td>
+                                            <td>@f.dateBackFlight</td>
+
+                                        </tr>
+                                    }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+</body>
+</html>
