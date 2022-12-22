@@ -54,31 +54,51 @@ namespace projectFlight.Controllers
          
             string valFrom = Request.Form["txtFrom"]?.ToString();
             string valTo= Request.Form["txtWhere"]?.ToString();
-            string valDate = Request.Form["txtDate"]?.ToString();
+            string valDate =Request.Form["txtDate"]?.ToString();
             string valDateBack = Request.Form["txtDateBack"]?.ToString();
-            string valOneWay = Request.Form["oneWay"]?.ToString();
-            //string val = Request.Form["txtWhere"].ToString();
-            List<Flight> fli = (from x in dal.Flights where x.flightTo.Contains(valTo)  &&  x.flightFrom.Contains(valFrom)  && x.oneWay.ToString()==valOneWay
+            bool valOneWay = Convert.ToBoolean(Request.Form["oneWay"]?.ToString());
 
-                                                                                            select x).ToList<Flight>();
-                FlightViewModel cvm = new FlightViewModel();
+
+            //string val = Request.Form["txtWhere"].ToString();
+
+            //Flight found = dal.Flights.Find(valFrom, valTo,valDate,valDateBack,valOneWay);
+
+            List<Flight> fli = (from x in dal.Flights
+                                where ( x.dateFlight.ToString()==valDate
+                                       && x.flightTo == valTo 
+                                       && x.oneWay==valOneWay)
+                                select x).ToList<Flight>();
+
+
+            //List<Flight> fli=null;
+            //foreach ( Flight f in dal.Flights)
+            //{
+            //    if(f.flightTo.Equals(valTo) && f.flightFrom.Equals(valFrom) )
+            //    {
+            //        fli.Add(f);
+            //    }
+            //}
+            //&& x.dateFlight.ToString().Equals(valDate)  && x.flightFrom.Contains(valFrom)
+
+
+
+            FlightViewModel cvm = new FlightViewModel();
                 cvm.Flights = fli;
 
-                foreach (var f in fli)
-                {
-                    Console.WriteLine(f.flightId);
-                }
+                
                 return View(cvm);
-            
-          
-        }
 
+            //x.flightTo==valTo &&
+        }//  && (x.dateFlight==Convert.ToDateTime(valDate)) || (x.dateBackFlight <= Convert.ToDateTime(valDateBack)))
+        //&& valOneWay==x.oneWay
         public ActionResult ShowSearch()
         {
             FlightViewModel cvm = new FlightViewModel();
             cvm.Flights = new List<Flight>();
             return View("Index", cvm);
         }
+
+        
 
 
     }

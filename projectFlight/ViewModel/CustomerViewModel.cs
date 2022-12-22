@@ -9,6 +9,9 @@ namespace projectFlight.ViewModel
     {
         public Customer Customer { get; set; }
         public List<Customer> Customers { get; set; }
+
+        public Order Order { get; set; }
+        public List<Order> Orders { get; set; }
     }
 
 }

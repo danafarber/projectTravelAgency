@@ -1,0 +1,41 @@
+﻿@model projectFlight.ViewModel.OrderViewModel
+@Session["SelectedValue"]
+@using projectFlight.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BookOrder</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("BookOrder", "Order", FormMethod.Post))
+        {
+
+
+            <i>First Name:</i>@Html.TextBoxFor(m => m.Order.custumerId)
+            <br />
+            <i>Last Name:</i>@Html.TextBoxFor(m => m.Order.NoTicket)
+            <br />
+
+            <i>Number:</i>@Html.TextBoxFor(m => m.Order.cardDate)
+            <br />
+            <i>id:</i>@Html.TextBoxFor(m => m.Order.cardNumber)
+            <br />
+            <i>mail:</i>@Html.TextBoxFor(m => m.Order.cvv)
+            <br />
+            @Html.DisplayFor(m => m.Order.flightId)
+
+            <input id="Submit1" type="submit" value="Go to website" />
+
+        }
+        @Html.DisplayFor(m => m.Order.flightId)
+
+    </div>
+</body>
+</html>

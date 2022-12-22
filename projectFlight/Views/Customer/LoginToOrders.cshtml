@@ -1,0 +1,31 @@
+﻿@model projectFlight.ViewModel.CustomerViewModel
+    @using projectFlight.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LoginToOrders</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Search", "Customer", FormMethod.Post))
+        {
+            <label>Id</label>
+            @Html.TextBox("CustID") @Session["CustID"]
+            <br />
+            <label>FirstName</label>
+            @Html.TextBox("firstName")
+            <br />
+            <label>LastName</label>
+            @Html.TextBox("lastName")
+
+            <input id="Submit3" type="submit" value="Go to my orders" />
+        }
+    </div>
+</body>
+</html>

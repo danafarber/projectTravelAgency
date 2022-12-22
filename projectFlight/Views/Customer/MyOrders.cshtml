@@ -1,0 +1,87 @@
+﻿@model projectFlight.ViewModel.OrderViewModel
+   @using projectFlight.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyOrders</title>
+</head>
+<body>
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order.flightId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flight.flightTo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flight.flightFrom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flight.dateFlight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flight.price)
+                </th>
+
+            </tr>
+
+
+
+            @{
+                if (Model.Orders.Count > 0)
+                {
+
+                    @*@Html.Label("hey")*@
+                    @Html.Label(Session["id"]?.ToString())
+                    @Html.DisplayTextFor(m => m.Orders.Count)
+                    foreach (Order o in Model.Orders)
+                    {
+                        if (Session["id"]?.ToString() == o.custumerId.ToString())
+                        {
+                            @Html.Label("hey")
+                        }
+
+                    }
+                    @*foreach (Order item in Model.Orders)
+                {
+                <tr>
+                    @if (@Session["CustID"].ToString() == item.custumerId)
+                    {
+                        foreach (var item2 in Model.Flights)
+                        {
+
+                            if (item.flightId == item2.flightId)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item2.flightTo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item2.flightFrom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item2.dateFlight)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item2.price)
+                                </td>
+
+
+                            }
+                        }
+                    }
+                </tr>
+                    }
+                }*@
+                }
+            }
+</div>
+</body>
+</html>
