@@ -1,0 +1,37 @@
+﻿@model projectFlight.Models.Order
+@using projectFlight.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SummaryOrder</title>
+</head>
+<body>
+    <div>
+        <h1>Youre booking is done</h1>
+
+        @Html.DisplayNameFor(m => m.flightId)
+        @Html.DisplayFor(m => m.flightId)
+        @Html.Hidden("fid", Model.flightId)
+
+
+        @Html.DisplayNameFor(m => m.fullName)
+        @Html.DisplayFor(m => m.fullName)
+
+
+
+        @Html.DisplayNameFor(m => m.TotalPrice)
+        @Html.DisplayFor(m => m.TotalPrice)
+    </div>
+    <div>
+        @Html.ActionLink("Back To Search","Index","Home") |@Html.ActionLink("My orders","MyOrders")
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,89 @@
+﻿@model projectFlight.Models.Order
+    @using projectFlight.Models;
+@{
+    Layout = null;
+    ViewBag.Title = "Payment";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Payment</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("SummaryOrder", "Order", FormMethod.Post))
+        {
+
+            <i> flight id </i>
+            @*@Html.DisplayNameFor(m => m.flightId)
+            @Html.DisplayFor(m => m.flightId)*@
+            @Html.LabelFor(m => m.flightId)
+            @Html.EditorFor(m => m.flightId)
+            @Html.Hidden("fid", Model.flightId)
+
+            @Html.LabelFor(m => m.orderId)
+            @Html.EditorFor(m => m.orderId)
+            @Html.Hidden("OrderID", Model.orderId)
+            <br />
+            @Html.LabelFor(m => m.cardNumber)
+            @Html.EditorFor(m => m.cardNumber)
+            @Html.Hidden("cardNum", Model.cardNumber)
+            <br />
+
+            @Html.LabelFor(m => m.cardDate)
+            @Html.EditorFor(m => m.cardDate)
+            @Html.Hidden("cardDate", Model.cardDate)
+
+            <br />
+
+            @Html.LabelFor(m => m.cvv)
+            @Html.EditorFor(m => m.cvv)
+            @Html.Hidden("cvv", Model.cvv)
+
+            <br />
+
+            @Html.LabelFor(m => m.custumerId)
+            @Html.EditorFor(m => m.custumerId)
+            @Html.Hidden("custID", Model.custumerId)
+
+
+            <br />
+
+
+
+            @Html.LabelFor(m => m.NoTicket)
+            @Html.EditorFor(m => m.NoTicket)
+            @Html.Hidden("noTick", Model.NoTicket)
+
+            @*<input type="number" name="noTick" value="@ViewData["Tick"]" />*@
+
+            <br />
+
+
+
+            @Html.LabelFor(m => m.fullName)
+            @Html.EditorFor(m => m.fullName)
+            @Html.Hidden("fullName", Model.fullName)
+
+            <br />
+            @Html.LabelFor(m => m.TotalPrice)
+            @Html.EditorFor(m => m.TotalPrice)
+            @Html.Hidden("totalPrice", Model.TotalPrice)
+            @*@Model.TotalPrice*@
+
+
+            @*@Html.DisplayFor(m => m.fullName)
+            @Html.DisplayNameFor(m => m.fullName)*@
+
+            <input type="submit" value="Complete Order" class="btn btn-default" />
+
+        }
+    </div>
+    <div>
+       @* @Html.ActionLink("Back to search","Index")*@
+    </div>
+</body>
+</html>

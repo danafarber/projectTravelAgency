@@ -1,4 +1,5 @@
 ﻿@model projectFlight.ViewModel.FlightViewModel
+
 @using projectFlight.Models;
 
 @{
@@ -29,9 +30,13 @@
     <title>Index</title>
 </head>
 <body>
+
     <div id="header"
          class="bg-gradient-to-br from-blue-900 to-blue-500 h-72"></div>
+
+
     <div class="container mx-auto flex flex-col pt-5 pb-5">
+
         <div id="booking"
              class="mt-10 border p-5 shadow-xl shadow-blue-800/05 rounded-md -translate-y-40 bg-white">
             <div class="col-md-4">
@@ -39,30 +44,34 @@
                 <form class="flex justify-between" action="Index" method="post">
                     <div class="flex flex-col w-1/5 gap-3">
                         @Html.LabelFor(m => m.Flight.flightTo, "Destination")
-
+                        @Html.EditorFor(m => m.Flight.flightTo)
                         <input id="Text1" name="txtWhere" type="text" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
                     </div>
 
                     <div class="flex flex-col w-1/5 gap-3">
                         @Html.LabelFor(m => m.Flight.flightFrom, "From")
+                        @Html.EditorFor(m => m.Flight.flightFrom)
                         <input id="Text2" name="txtFrom" type="text" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
                     </div>
                     <div class="flex flex-col w-1/5 gap-3">
                         @Html.LabelFor(m => m.Flight.dateFlight, "Date")
+                        @Html.EditorFor(m => m.Flight.dateFlight)
                         <input id="Text3" name="txtDate" type="date" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
                     </div>
                     <div class="flex flex-col w-1/5 gap-3">
                         @Html.LabelFor(m => m.Flight.dateBackFlight, "Date Back")
+                        @Html.EditorFor(m => m.Flight.dateBackFlight)
+
                         <input id="Text4" name="txtDateBack" type="date" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
                     </div>
                     <div class="flex flex-col gap-3">
 
                         @Html.LabelFor(m => m.Flight.oneWay, "One way?")
-                        @Html.CheckBoxFor(m => m.Flight.oneWay)
+                        @*@Html.EditorFor(m => m.Flight.oneWay)*@
+                        @*@Html.CheckBoxFor(m => m.Flight.oneWay)*@
 
-                        @*<input type="checkbox"
-        name="oneWay"
-        class="border rounded-sm p-3 w-full focus:border-blue-300 transition ease-in-out" />*@
+                        <input id="Text4" name="oneWay" type="checkbox" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
+
                     </div>
 
                     <div class="flex flex-col justify-end">
@@ -70,7 +79,9 @@
                                class="rounded-sm p-3 w-full bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out" />
                     </div>
                 </form>
+
             </div>
+
         </div>
 
 
@@ -98,28 +109,56 @@
                 <thead>
 
                 <tbody>
+
                     @foreach (Flight f in Model.Flights)
                     {
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+
+                            <td class="py-4 px-6">@f.flightId</td>
+
+                            <td class="py-4 px-6">@f.flightFrom</td>
+                            <td class="py-4 px-6">@f.flightTo</td>
+                            <td class="py-4 px-6">@f.price</td>
+                            <td class="py-4 px-6">@f.dateFlight.ToShortDateString()</td>
+                            <td class="py-4 px-6">@f.timeFlight</td>
+                            <td class="py-4 px-6">@f.dateBackFlight </td>
+                            <td class="rounded-sm p-3">
+                               
+
+                                @if (f.numberOfSeats > 0)
 
 
-                        <td class="py-4 px-6">@f.flightId</td>@Session["flightIdValue"]
-                        <td class="py-4 px-6">@f.flightFrom</td>
-                        <td class="py-4 px-6">@f.flightTo</td>
-                        <td class="py-4 px-6">@f.price</td>@Session["flightPriceValue"]
-                        <td class="py-4 px-6">@f.dateFlight.ToString("dd/MM/yyyy")</td>
-                        <td class="py-4 px-6">@f.timeFlight</td>
-                        <td class="py-4 px-6">@f.dateBackFlight.Value.ToString("dd/MM/yyyy")</td>
-                        <td class="rounded-sm p-3">@Html.ActionLink("Book a flight!", "BookOrder")</td>
+                                {
+                                    using (Html.BeginForm("Payment", "Order", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("fid", f.flightId)
+                                        @Html.Hidden("ffrom", f.flightFrom)
+                                        @Html.Hidden("fto", f.flightTo)
+                                        @Html.Hidden("fprice", f.price)
+                                        @Html.Hidden("fdateFlight", f.dateFlight)
+                                        @Html.Hidden("fdatebackflight", f.dateBackFlight)
+                                        <input id="Submit1" type="submit" value="Book a flight!" />
+
+                                    }
+                                }
+                            </td>
 
 
 
-                    </tr>
+                        </tr>
                     }
                 </tbody>
             </table>
+
         </div>
+
     </div>?
+
+
 </body>
+
+
 </html>
 @*new { id = f.flightId }*@
+@*@Html.ActionLink("Book a flight!", "BookOrder", new { id = f.flightId })*@
+@*Value?.ToString("dd/MM/yyyy"*@

@@ -1,0 +1,33 @@
+﻿@model projectFlight.ViewModel.CustomerViewModel
+    @using projectFlight.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LoginCustomer</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.LabelFor(m => m.Customer.passportNum)
+            @Html.EditorFor(m => m.Customer.passportNum)
+
+            @Html.LabelFor(m => m.Customer.custId)
+            @Html.EditorFor(m => m.Customer.custId)
+
+            @Html.LabelFor(m => m.Customer.mail)
+            @Html.EditorFor(m => m.Customer.mail)
+
+            <input id="Submit" type="submit" value="Sign in" />
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+﻿<!--@model projectFlight.Models.Order
+@using projectFlight.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyOrders</title>
+</head>
+<body>
+    <div>
+
+
+      <table class="table">
+          <tr>
+              <th>
+                  @Html.DisplayNameFor(model => model.flightId)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.orderId)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.NoTicket)
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.TotalPrice)
+              </th>
+              <th>
+                  
+              </th>
+              <th>
+                  @Html.DisplayNameFor(model => model.fullName)
+              </th>
+
+
+          </tr>
+
+       
+
+
+        </tr>
+        </table>
+
+
+    </div>
+</body>
+</html>-->
+
+
+
+
+@*<tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.flightId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.flightTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.flightFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.dateFlight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.price)
+        </th>
+
+    </tr>
+
+    @foreach (Flight item2 in Model.Flights)
+    {
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item2.flightTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item2.flightFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item2.dateFlight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item2.price)
+        </td>
+
+
+    }*@
+
+
+
+@*<th>
+        @Html.DisplayNameFor(model => model.flightId)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.orderId)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.NoTicket)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.TotalPrice)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.seatNumber)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.fullName)
+    </th>*@
+
+
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.flightId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.flightFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.flightTo)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.orderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.NoTicket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.TotalPrice)
+        </th>
+        <th>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.fullName)
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model.Orders)
+    {
+
+        foreach (var item1 in Model.Flights)
+        {
+
+            if (item.flightId == item1.flightId)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item1.flightId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item1.flightFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item1.flightTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoTicket)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.seatNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullName)
+                </td>
+
+            }
+        }
+    }
+
+    </tr>
+</table>*@

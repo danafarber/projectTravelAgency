@@ -1,4 +1,4 @@
-﻿@model projectFlight.ViewModel.CustomerViewModel
+﻿@model projectFlight.Models.Customer
 @using projectFlight.Models;
 
 @{
@@ -20,41 +20,44 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("Sumbit", "Customer", FormMethod.Post))
+        @using (Html.BeginForm())
         {
 
-            <i>First Name:</i>@Html.TextBoxFor(m => m.Customer.firstName)
-            <br />
-            <i>Last Name:</i>@Html.TextBoxFor(m => m.Customer.lastName)
-            <br />
-            <i>Number:</i>@Html.TextBoxFor(m => m.Customer.passportNum)
-            <br />
-            <i>id:</i>@Html.TextBoxFor(m => m.Customer.custId) 
-            <br />
-            <i>mail:</i>@Html.TextBoxFor(m => m.Customer.mail)
-            <br />
-            <input id="Submit1" type="submit" value="Go to website" />
+            @Html.LabelFor(m => m.firstName)
+            @Html.EditorFor(m => m.firstName)
+
+            @Html.LabelFor(m => m.lastName)
+            @Html.EditorFor(m => m.lastName)
+
+            @Html.LabelFor(m => m.passportNum)
+            @Html.EditorFor(m => m.passportNum)
+
+            @Html.LabelFor(m => m.custId)
+            @Html.EditorFor(m => m.custId)
+
+            @Html.LabelFor(m => m.mail)
+            @Html.EditorFor(m => m.mail)
+
+            <input id="Submit1" type="submit" value="Sign up" />
 
         }
-        @*<table id="colorDiv">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Customer number</th>
-            </tr>
-            @foreach (Customer cus in Model.Customers)
-            {
-        <tr>
-            <td>@cus.firstName</td>
-            <td>@cus.lastName</td>
-            <td>@cus.passportNum</td>
-            <td>@cus.mail</td>
-            <td>@cus.custId</td>
-        </tr>
-            }
-        </table>*@
+
     </div>
 </body>
 </html>
 
 
+@*@Html.LabelFor(m => m.Customer.firstName)
+@Html.EditorFor(m => m.Customer.firstName)
+
+@Html.LabelFor(m => m.Customer.lastName)
+@Html.EditorFor(m => m.Customer.lastName)
+
+@Html.LabelFor(m => m.Customer.passportNum)
+@Html.EditorFor(m => m.Customer.passportNum)
+
+@Html.LabelFor(m => m.Customer.custId)
+@Html.EditorFor(m => m.Customer.custId)
+
+@Html.LabelFor(m => m.Customer.mail)
+@Html.EditorFor(m => m.Customer.mail)*@

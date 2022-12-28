@@ -11,6 +11,10 @@ namespace projectFlight.ViewModel
 
         public Flight Flight { get; set; }
         public List<Flight> Flights { get; set; }
+
+        public Order Order { get; set; }
+
+        public List<Order> Orders { get; set; }
        
     }
 }

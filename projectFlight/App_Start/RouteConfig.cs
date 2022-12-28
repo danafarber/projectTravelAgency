@@ -18,11 +18,11 @@ namespace projectFlight
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
-             name: "Order",
-             url: "{controller}/{action}/{id}",
-             defaults: new { controller = "Order", action = "BookOrder", id = UrlParameter.Optional }
-         );
+         //   routes.MapRoute(
+         //    name: "Order",
+         //    url: "{controller}/{action}/{id}",
+         //    defaults: new { controller = "Order", action = "BookOrder", id = UrlParameter.Optional }
+         //);
 
 
             //routes.MapRoute(

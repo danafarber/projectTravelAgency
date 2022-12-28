@@ -15,15 +15,40 @@ namespace projectFlight.Controllers
         {
             return View();
         }
-
         public ActionResult EnterCustomer()
         {
-            Dal1 dal = new Dal1();
-            List<Customer> objCustomers = dal.Customers.ToList<Customer>();
-            CustomerViewModel cvm = new CustomerViewModel();
-            cvm.Customer = new Customer();
-            cvm.Customers = objCustomers;
-            return View(cvm);
+            return View();
+        }//register
+
+        [HttpPost]
+        public ActionResult EnterCustomer(Customer customer) //register
+        {
+            if (ModelState.IsValid)
+            {
+                Dal1 dal = new Dal1();
+                if (dal.Customers.Any(c=>c.custId==customer.custId))
+                {
+                    ViewBag.Message = "The user alredy exsits";
+                    return RedirectToAction("LoginCustomer", "Customer");
+                }
+                //foreach (Customer C in dal.Customers)
+                //{
+                //    if(C.custId.ToString().Equals(customer.custId))
+                //    {
+                //        ViewBag.Message = "The user alredy exsits";
+                //        return View();
+                //    }
+                //}
+
+                dal.Customers.Add(customer);
+                dal.SaveChanges();
+                ViewBag.Message = "Welcome";
+                return RedirectToAction("Index", "Home");
+
+            }
+            
+         
+            return View();
 
             //CustomerViewModel cvm = new CustomerViewModel();
             //Customer objC = new Customer();
@@ -54,6 +79,29 @@ namespace projectFlight.Controllers
 
         }
 
+        public ActionResult LoginCustomer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LoginCustomer(Customer customer)
+        {
+            Dal1 dal = new Dal1();
+
+            //var ifExs = dal.Customers.Find(customer.custId);
+            //if (ifExs != null)
+            //{
+            //    RedirectToAction("Index", "Home");
+            //}
+            if (dal.Customers.Any(c => c.custId == customer.custId))//alredy exsits
+            {
+               return RedirectToAction("Index", "Home");
+            }
+            //else
+            //    ViewBag.Message = "No such user,please register";
+            return View();
+        }
         public ActionResult Sumbit() //login or sign in
         {
             //Customer cust = new Customer();
@@ -126,10 +174,10 @@ namespace projectFlight.Controllers
             return objC;
         }
 
-        public ActionResult BookOrder(string id)
-        {
-            return View();
-        }
+        //public ActionResult BookOrder(string id)
+        //{
+        //    return View();
+        //}
         public ActionResult LoginToOrders()
         {
             Dal1 dal = new Dal1();
@@ -178,6 +226,15 @@ namespace projectFlight.Controllers
             return View(avm);
         }
 
+        public ActionResult ShowSearrch()
+        {
+            OrderViewModel avm = new OrderViewModel();
+            avm.Orders = new List<Order>();
+            return View("MyOrders", avm);
+        }
+
+
+        
 
         //public ActionResult MyOrders(OrderViewModel orderModel)
         //{
