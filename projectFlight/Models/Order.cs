@@ -11,36 +11,45 @@ namespace projectFlight.Models
     {
         [Key]
         [StringLength(10)]
+        [Display(Name = "Order ID:")]
         public string orderId { get; set; }
 
         [Required]
         [StringLength(50)]
-        
+        [Display(Name = "Flight ID:")]
         public string flightId { get; set; }
 
-      
+        [Display(Name = "Number of tickets:")]
         public int NoTicket { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Total Price:")]
         public string TotalPrice { get; set; }
 
        
 
         [StringLength(10)]
- 
+        [Display(Name = "ID:")]
         public string custumerId { get; set; }
 
         [StringLength(16)]
+        [Display(Name = "Credit Card Number:")]
         public string cardNumber { get; set; }
 
-        [StringLength(5)]
+        [StringLength(5, MinimumLength = 4)]
+        [Display(Name = "Credit Card Date:")]
         public string cardDate { get; set; }
 
-        [StringLength(3)]
+        [StringLength(3, MinimumLength=3)]
+        [Display(Name = "Credit cvv:")]
         public string cvv { get; set; }
+
         [StringLength(50)]
+        [Display(Name = "Full Name :")]
         public string fullName { get; set; }
+
+
         public virtual Flight Flight { get; set; }
     }
 }

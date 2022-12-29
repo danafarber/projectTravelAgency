@@ -185,12 +185,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\EnterCustomer.cshtml" />
-    <Content Include="Views\Customer\Customer.cshtml" />
     <Content Include="Views\Order\BookOrder.cshtml" />
     <Content Include="Views\Customer\LoginToOrders.cshtml" />
-    <Content Include="Views\Order\MyOrders.cshtml" />
-    <Content Include="Views\Home\Confirm.cshtml" />
-    <Content Include="Views\Home\DetailsFlight.cshtml" />
     <Content Include="Views\Order\Payment.cshtml" />
     <Content Include="Views\Order\SummaryOrder.cshtml" />
     <Content Include="Views\Customer\LoginCustomer.cshtml" />

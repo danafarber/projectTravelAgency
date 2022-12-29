@@ -66,11 +66,15 @@
                     </div>
                     <div class="flex flex-col gap-3">
 
-                        @Html.LabelFor(m => m.Flight.oneWay, "One way?")
+                        @*@Html.RadioButton(m => m.Flight.oneWay, "One way")
+                         @Html.RadioButton(m => m.Flight.oneWay, "Two ways")*@
+                        @*@Html.LabelFor(m => m.Flight.oneWay, "One way?")*@
                         @*@Html.EditorFor(m => m.Flight.oneWay)*@
                         @*@Html.CheckBoxFor(m => m.Flight.oneWay)*@
-
-                        <input id="Text4" name="oneWay" type="checkbox" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
+                        <span>One Way</span>
+                        <input type="radio" name="radioButton" value="One Way" />
+                        <span>Two Ways </span><input type="radio" name="radioButton" value="Two Ways" />
+                        @*<input id="Text4" name="oneWay" type="checkbox" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />*@
 
                     </div>
 
@@ -124,8 +128,9 @@
                             <td class="py-4 px-6">@f.dateBackFlight </td>
                             <td class="rounded-sm p-3">
                                
-
-                                @if (f.numberOfSeats > 0)
+                                @if (!f.dateFlight.ToShortDateString().Contains(DateTime.Today.ToShortDateString()))
+                                {
+                                    if (f.numberOfSeats > 0)
 
 
                                 {
@@ -141,6 +146,11 @@
 
                                     }
                                 }
+                                }
+                else
+                {
+                    <h1>Cannot book the flight,please try again!</h1>
+                }
                             </td>
 
 

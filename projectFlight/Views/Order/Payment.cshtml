@@ -26,27 +26,33 @@
 
             @Html.LabelFor(m => m.orderId)
             @Html.EditorFor(m => m.orderId)
+
             @Html.Hidden("OrderID", Model.orderId)
             <br />
             @Html.LabelFor(m => m.cardNumber)
             @Html.EditorFor(m => m.cardNumber)
+            @Html.ValidationMessageFor(m => m.cardNumber)
             @Html.Hidden("cardNum", Model.cardNumber)
             <br />
 
             @Html.LabelFor(m => m.cardDate)
             @Html.EditorFor(m => m.cardDate)
+            @Html.ValidationMessageFor(m => m.cardDate)
+
             @Html.Hidden("cardDate", Model.cardDate)
 
             <br />
 
             @Html.LabelFor(m => m.cvv)
             @Html.EditorFor(m => m.cvv)
+            @Html.ValidationMessageFor(m => m.cvv)
             @Html.Hidden("cvv", Model.cvv)
 
             <br />
 
             @Html.LabelFor(m => m.custumerId)
             @Html.EditorFor(m => m.custumerId)
+            @Html.ValidationMessageFor(m => m.custumerId)
             @Html.Hidden("custID", Model.custumerId)
 
 
@@ -56,6 +62,7 @@
 
             @Html.LabelFor(m => m.NoTicket)
             @Html.EditorFor(m => m.NoTicket)
+            @Html.ValidationMessageFor(m => m.NoTicket)
             @Html.Hidden("noTick", Model.NoTicket)
 
             @*<input type="number" name="noTick" value="@ViewData["Tick"]" />*@
@@ -66,24 +73,25 @@
 
             @Html.LabelFor(m => m.fullName)
             @Html.EditorFor(m => m.fullName)
+            @Html.ValidationMessageFor(m => m.fullName)
             @Html.Hidden("fullName", Model.fullName)
 
             <br />
             @Html.LabelFor(m => m.TotalPrice)
             @Html.EditorFor(m => m.TotalPrice)
             @Html.Hidden("totalPrice", Model.TotalPrice)
-            @*@Model.TotalPrice*@
 
-
-            @*@Html.DisplayFor(m => m.fullName)
-            @Html.DisplayNameFor(m => m.fullName)*@
 
             <input type="submit" value="Complete Order" class="btn btn-default" />
-
+           
+            <span>Save the creadit Card for next time?</span>
+            <span>Yes</span>
+            <input type="radio" name="creditCardSave" value="Save" />
+            <span>No </span><input type="radio" name="creditCardSave" value="Not this time" />
         }
     </div>
     <div>
-       @* @Html.ActionLink("Back to search","Index")*@
+        @Html.ActionLink("Back to search","Index","Home")
     </div>
 </body>
 </html>

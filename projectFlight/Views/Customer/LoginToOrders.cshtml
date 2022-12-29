@@ -1,5 +1,6 @@
-﻿@model projectFlight.ViewModel.CustomerViewModel
-    @using projectFlight.Models;
+﻿@model IEnumerable<projectFlight.Models.Order>
+@using projectFlight.Models;
+
 @{
     Layout = null;
 }
@@ -13,19 +14,48 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("Search", "Customer", FormMethod.Post))
+        @using (Html.BeginForm("SearchOrders", "Customer", FormMethod.Post))
         {
-            <label>Id</label>
-            @Html.TextBox("CustID") 
-            <br />
-            <label>FirstName</label>
-            @Html.TextBox("firstName")
-            <br />
-            <label>LastName</label>
-            @Html.TextBox("lastName")
+
+
+            @*@Html.LabelFor(m => m.)
+                @Html.TextBoxFor(m => m.custumerId)
+                @Html.Hidden("custID", Model.custumerId)*@
+            @*@Html.LabelFor(m => m.Customer.custId)
+                @Html.TextBoxFor(m => m.Customer.custId)
+                @Html.Hidden("custID", Model.Customer.custId)*@
+            <h1>enter id</h1><input id="Text1" type="text" name="custID" />
 
             <input id="Submit3" type="submit" value="Go to my orders" />
         }
+
+        <table class="table">
+            <tr>
+                <th>Customer ID</th>
+                <th>Flight Number</th>
+                <th>No. of Tickets</th>
+                <th>Total Price</th>
+                <th>Order ID </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.custumerId</td>
+                    <td>@item.flightId</td>
+                    <td>@item.NoTicket</td>
+                    <td>@item.TotalPrice</td>
+                    <td>@item.orderId</td>
+                </tr>
+            }
+        </table>
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
+

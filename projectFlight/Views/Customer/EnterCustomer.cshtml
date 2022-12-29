@@ -25,18 +25,23 @@
 
             @Html.LabelFor(m => m.firstName)
             @Html.EditorFor(m => m.firstName)
+            @Html.ValidationMessageFor(m => m.firstName)
 
             @Html.LabelFor(m => m.lastName)
             @Html.EditorFor(m => m.lastName)
+            @Html.ValidationMessageFor(m => m.lastName)
 
             @Html.LabelFor(m => m.passportNum)
             @Html.EditorFor(m => m.passportNum)
+            @Html.ValidationMessageFor(m => m.passportNum)
 
             @Html.LabelFor(m => m.custId)
             @Html.EditorFor(m => m.custId)
+            @Html.ValidationMessageFor(m => m.custId)
 
             @Html.LabelFor(m => m.mail)
             @Html.EditorFor(m => m.mail)
+            @Html.ValidationMessageFor(m => m.mail)
 
             <input id="Submit1" type="submit" value="Sign up" />
 
@@ -46,18 +51,3 @@
 </body>
 </html>
 
-
-@*@Html.LabelFor(m => m.Customer.firstName)
-@Html.EditorFor(m => m.Customer.firstName)
-
-@Html.LabelFor(m => m.Customer.lastName)
-@Html.EditorFor(m => m.Customer.lastName)
-
-@Html.LabelFor(m => m.Customer.passportNum)
-@Html.EditorFor(m => m.Customer.passportNum)
-
-@Html.LabelFor(m => m.Customer.custId)
-@Html.EditorFor(m => m.Customer.custId)
-
-@Html.LabelFor(m => m.Customer.mail)
-@Html.EditorFor(m => m.Customer.mail)*@
