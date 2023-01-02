@@ -32,7 +32,7 @@ namespace projectFlight.Controllers
                     order. flightId = fid;
                     order.orderId = rnd.Next().ToString();
                     order.NoTicket = Convert.ToInt32(noTick);
-            order.TotalPrice = fprice;
+                    order.TotalPrice = fprice;
                     order.custumerId = custID;
                     order.cardDate = cardDate;
                     order.cardNumber = cardNum;
@@ -70,7 +70,7 @@ namespace projectFlight.Controllers
             }
 
             Flight f = dal.Flights.Find(order.flightId);
-           f.numberOfSeats =f.numberOfSeats- order.NoTicket;
+            f.numberOfSeats =f.numberOfSeats- order.NoTicket;
             dal.SaveChanges();
 
             return View(order);

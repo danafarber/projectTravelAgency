@@ -28,8 +28,13 @@
     <title>SummaryOrder</title>
 </head>
 <body>
-    <div>
-        <div class="font-bold">
+
+    <div id="header"
+         class="bg-gradient-to-br from-blue-900 to-blue-500 h-72"></div>
+
+
+    <div class="container mx-auto flex flex-col pt-5 pb-5">
+        <div class="mt-10 border p-5 shadow-xl shadow-blue-800/05 rounded-md bg-white flex flex-col justify-center items-center">
             <h1>Youre booking is done!</h1>
             @using (Html.BeginForm(FormMethod.Get))
             {
@@ -42,29 +47,29 @@
                     @Html.Hidden("fid", Model.flightId)
                 </div>
 
-            <div class="font-bold">
-                @Html.DisplayNameFor(m => m.orderId)
-                @Html.DisplayFor(m => m.orderId)
-                @Html.Hidden("OrderID", Model.orderId)
-            </div>
+                <div class="font-bold">
+                    @Html.DisplayNameFor(m => m.orderId)
+                    @Html.DisplayFor(m => m.orderId)
+                    @Html.Hidden("OrderID", Model.orderId)
+                </div>
 
-            <div class="font-bold">
-                @Html.DisplayNameFor(m => m.fullName)
-                @Html.DisplayFor(m => m.fullName)
-            </div>
+                <div class="font-bold">
+                    @Html.DisplayNameFor(m => m.fullName)
+                    @Html.DisplayFor(m => m.fullName)
+                </div>
 
 
 
-            <p>Your total price is: @Model.TotalPrice</p>
+                <p>Your total price is: @Model.TotalPrice$</p>
             }
         </div>
-           
-            </div>
-            
 
-        <div class="rounded-sm p-3 mx-auto bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out mx-outo">
-            @Html.ActionLink("Back To Search", "Index", "Home") | @Html.ActionLink("My orders", "LoginToOrders", "Customer")
-        </div>
+    </div>
+
+
+    <div class="flex justify-between w-5/12 mx-auto items-center">
+        @Html.ActionLink("Back To Search", "Index", "Home") | @Html.ActionLink("My Orders", "LoginToOrders", "Customer")
+    </div>
 </body>
 
 </html>

@@ -21,12 +21,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
-    <script>
-        $(function () {
-            $("#header").load("header.html");
-            $("#footer").load("footer.html");
-        });
-    </script>
     <title>Index</title>
 </head>
 <body>
@@ -123,7 +117,7 @@
                             <td class="py-4 px-6">@f.timeFlight</td>
                             <td class="py-4 px-6">@f.dateBackFlight </td>
                             <td class="rounded-sm p-3">
-                                @*(f.dateFlight.ToShortDateString().CompareTo(DateTime.Today.ToShortDateString())*@
+                            
 
                                 @if ((DateTime.Compare(f.dateFlight, DateTime.Today) > 0) || (DateTime.Compare(f.dateFlight, DateTime.Today) ==0  && (DateTime.Compare(DateTime.Parse(f.timeFlight),DateTime.Now.ToLocalTime())>0)))
                                 {
@@ -139,7 +133,7 @@
                                             @Html.Hidden("fprice", f.price)
                                             @Html.Hidden("fdateFlight", f.dateFlight)
                                             @Html.Hidden("fdatebackflight", f.dateBackFlight.GetValueOrDefault().ToString("dd/MM/yyyy"))
-                                            <input id="Submit1" type="submit" value="Book a flight!" />
+                                            <input id="Submit1" type="submit" value="Book a flight!" class="rounded-sm p-3 w-full bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out"/>
 
                                         }
                                     }
