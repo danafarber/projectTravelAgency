@@ -1,5 +1,5 @@
 ﻿@model projectFlight.Models.Order
-    @using projectFlight.Models;
+@using projectFlight.Models;
 @{
     Layout = null;
     ViewBag.Title = "Payment";
@@ -10,48 +10,101 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/19bc22f122.js"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+
+        $(document).ready(function () {
+            let totalOrder = document.querySelector("#totalOrder");
+            let numOfTickets = document.querySelector("#NoTicket");
+            let pricePerTicket = document.querySelector("#pricePerTicket");
+            let totalPriceInDb = document.querySelector("#totalPrice");
+
+
+            numOfTickets.addEventListener("change", (event) => {
+                totalOrder.innerHTML = event.target.value * pricePerTicket.innerText;
+                totalPriceInDb.value = event.target.value * pricePerTicket.innerText;
+            })
+        });
+    </script>
+
     <title>Payment</title>
 </head>
+
 <body>
-    <div>
+    <div class="flex flex-col items-center justify-items-center">
         @using (Html.BeginForm("SummaryOrder", "Order", FormMethod.Post))
         {
 
-            <i> flight id </i>
-            @*@Html.DisplayNameFor(m => m.flightId)
-            @Html.DisplayFor(m => m.flightId)*@
-            @Html.LabelFor(m => m.flightId)
-            @Html.EditorFor(m => m.flightId)
-            @Html.Hidden("fid", Model.flightId)
 
-            @Html.LabelFor(m => m.orderId)
-            @Html.EditorFor(m => m.orderId)
 
-            @Html.Hidden("OrderID", Model.orderId)
-            <br />
-            @Html.LabelFor(m => m.cardNumber)
-            @Html.EditorFor(m => m.cardNumber)
+
+            <div>
+                <h2 class="text-bold font-semibold text-2xl mt-5 border-b-2 border-blue-200 pb-2">
+                    flight and order Details
+                </h2>
+            </div>
+            <div class="flex justify-between w-3/5 mx-auto gap-10">
+                <div class="flex flex-col gap-3 w-full">
+                    @Html.LabelFor(m => m.flightId, new { @class = "font-bold" })
+                    @Html.EditorFor(m => m.flightId, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
+                    @Html.Hidden("fid", Model.flightId)
+
+
+                    @Html.LabelFor(m => m.orderId, new { @class = "font-bold" })
+                    @Html.EditorFor(m => m.orderId, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
+                    @Html.Hidden("OrderID", Model.orderId)
+
+
+                    <h2>Price Per Ticket: <span id="pricePerTicket">@Model.TotalPrice</span>$</h2>
+                    <h2>Order Total: <span id="totalOrder"></span>$</h2>
+
+                    @*@Html.LabelFor(m => m.Flight.price, new { @class = "font-bold" })
+                    @Html.DisplayFor(m => m.Flight.price, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
+                    @Html.Hidden("fprice", Model.Flight.price)*@
+
+                </div>
+            </div>
+            <h2 class="text-bold font-semibold text-2xl mt-5 border-b-2 border-blue-200 pb-2">
+                Payment Details
+            </h2>
+            @Html.LabelFor(m => m.cardNumber, new { @class = "font-bold" })
+            @Html.EditorFor(m => m.cardNumber, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
             @Html.ValidationMessageFor(m => m.cardNumber)
             @Html.Hidden("cardNum", Model.cardNumber)
             <br />
 
-            @Html.LabelFor(m => m.cardDate)
-            @Html.EditorFor(m => m.cardDate)
+            @Html.LabelFor(m => m.cardDate, new { @class = "font-bold" })
+            @Html.EditorFor(m => m.cardDate, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
             @Html.ValidationMessageFor(m => m.cardDate)
 
             @Html.Hidden("cardDate", Model.cardDate)
 
             <br />
 
-            @Html.LabelFor(m => m.cvv)
-            @Html.EditorFor(m => m.cvv)
+            @Html.LabelFor(m => m.cvv, new { @class = "font-bold" })
+            @Html.EditorFor(m => m.cvv, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
             @Html.ValidationMessageFor(m => m.cvv)
             @Html.Hidden("cvv", Model.cvv)
 
             <br />
+            <h2 class="text-bold font-semibold text-2xl mt-5 mb-10 border-b-2 border-blue-200 pb-2">
+                Passanger Details
+            </h2>
 
-            @Html.LabelFor(m => m.custumerId)
-            @Html.EditorFor(m => m.custumerId)
+            @Html.LabelFor(m => m.custumerId, new { @class = "font-bold" })
+            @Html.EditorFor(m => m.custumerId, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
             @Html.ValidationMessageFor(m => m.custumerId)
             @Html.Hidden("custID", Model.custumerId)
 
@@ -60,38 +113,46 @@
 
 
 
-            @Html.LabelFor(m => m.NoTicket)
-            @Html.EditorFor(m => m.NoTicket)
+            @Html.LabelFor(m => m.NoTicket, new { @class = "font-bold" })
+            @Html.EditorFor(m => m.NoTicket, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
             @Html.ValidationMessageFor(m => m.NoTicket)
             @Html.Hidden("noTick", Model.NoTicket)
 
-            @*<input type="number" name="noTick" value="@ViewData["Tick"]" />*@
+
 
             <br />
 
 
 
-            @Html.LabelFor(m => m.fullName)
-            @Html.EditorFor(m => m.fullName)
+            @Html.LabelFor(m => m.fullName, new { @class = "font-bold" })
+            @Html.EditorFor(m => m.fullName, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
             @Html.ValidationMessageFor(m => m.fullName)
             @Html.Hidden("fullName", Model.fullName)
 
             <br />
-            @Html.LabelFor(m => m.TotalPrice)
-            @Html.EditorFor(m => m.TotalPrice)
+
             @Html.Hidden("totalPrice", Model.TotalPrice)
 
 
-            <input type="submit" value="Complete Order" class="btn btn-default" />
-           
-            <span>Save the creadit Card for next time?</span>
-            <span>Yes</span>
-            <input type="radio" name="creditCardSave" value="Save" />
-            <span>No </span><input type="radio" name="creditCardSave" value="Not this time" />
+            <div class="justify-between w-3/5 mx-auto gap-10 mt-10">
+                <label>Save the creadit Card for next time? </label>
+                <span>Yes</span>
+                <input type="radio" name="creditCardSave" value="Save" />
+                <span>Not this time </span>
+                <input type="radio" name="creditCardSave" value="Not this time" />
+            </div>
+
+            <div class="flex justify-between w-3/5 mx-auto gap-10 mt-10">
+                <input type="submit" value="Complete Order" class="rounded-sm p-3 w-full mx-auto bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out" />
+            </div>
         }
     </div>
-    <div>
-        @Html.ActionLink("Back to search","Index","Home")
+    <div class="flex flex-col justify-center items-center w-3/5 mt-5 gap-10 mx-auto">
+        <a href="https://www.paypal.com/il/signin" class="rounded-sm p-3 mx-auto bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out"> Pay with PayPal </a>
+        @Html.ActionLink("Back to search", "Index", "Home")
+
+
     </div>
+    <div id="footer"></div>
 </body>
 </html>

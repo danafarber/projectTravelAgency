@@ -33,15 +33,15 @@ namespace projectFlight.Models
         [Display(Name = "ID:")]
         public string custumerId { get; set; }
 
-        [StringLength(16)]
+        [StringLength(16,MinimumLength =10,ErrorMessage ="Please enter a vailid credit card number")]
         [Display(Name = "Credit Card Number:")]
         public string cardNumber { get; set; }
 
-        [StringLength(5, MinimumLength = 4)]
+        [StringLength(5, MinimumLength = 4, ErrorMessage = "Please enter a vailid credir card date")]
         [Display(Name = "Credit Card Date:")]
         public string cardDate { get; set; }
 
-        [StringLength(3, MinimumLength=3)]
+        [StringLength(3, MinimumLength=3, ErrorMessage = "Please enter a vailid credir card cvv")]
         [Display(Name = "Credit cvv:")]
         public string cvv { get; set; }
 

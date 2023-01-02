@@ -8,29 +8,63 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/19bc22f122.js"
+            crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
     <title>SummaryOrder</title>
 </head>
 <body>
     <div>
-        <h1>Youre booking is done</h1>
-
-        @Html.DisplayNameFor(m => m.flightId)
-        @Html.DisplayFor(m => m.flightId)
-        @Html.Hidden("fid", Model.flightId)
-
-
-        @Html.DisplayNameFor(m => m.fullName)
-        @Html.DisplayFor(m => m.fullName)
+        <div class="font-bold">
+            <h1>Youre booking is done!</h1>
+            @using (Html.BeginForm(FormMethod.Get))
+            {
 
 
 
-        @Html.DisplayNameFor(m => m.TotalPrice)
-        @Html.DisplayFor(m => m.TotalPrice)
-    </div>
-    <div>
-        @Html.ActionLink("Back To Search","Index","Home") |@Html.ActionLink("My orders","MyOrders")
-    </div>
+                <div class="font-bold">
+                    @Html.DisplayNameFor(m => m.flightId)
+                    @Html.DisplayFor(m => m.flightId)
+                    @Html.Hidden("fid", Model.flightId)
+                </div>
+
+            <div class="font-bold">
+                @Html.DisplayNameFor(m => m.orderId)
+                @Html.DisplayFor(m => m.orderId)
+                @Html.Hidden("OrderID", Model.orderId)
+            </div>
+
+            <div class="font-bold">
+                @Html.DisplayNameFor(m => m.fullName)
+                @Html.DisplayFor(m => m.fullName)
+            </div>
+
+
+
+            <p>Your total price is: @Model.TotalPrice</p>
+            }
+        </div>
+           
+            </div>
+            
+
+        <div class="rounded-sm p-3 mx-auto bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out mx-outo">
+            @Html.ActionLink("Back To Search", "Index", "Home") | @Html.ActionLink("My orders", "LoginToOrders", "Customer")
+        </div>
 </body>
 
 </html>

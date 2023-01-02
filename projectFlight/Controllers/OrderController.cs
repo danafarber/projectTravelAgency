@@ -19,29 +19,34 @@ namespace projectFlight.Controllers
        
 
         [HttpPost]
-        public ActionResult Payment(string fid,string OrderID, string cardNum,string cardDate,string cvv,string custID,string noTick,string fullName, string totalPrice, string creditCardSave)
+        public ActionResult Payment(string fid,string fprice,string OrderID, string cardNum,string cardDate,string cvv,string custID,string noTick,string fullName, string totalPrice, string creditCardSave)
         {
-            string total;
+            int total=0;
             Dal1 dal = new Dal1();
             Flight flight = dal.Flights.Find(fid);
-            int priceForFlight = flight.price;
-            total = ((priceForFlight) * Convert.ToInt32(noTick)).ToString();
+            int priceForFlight = Convert.ToInt32(fprice);
+            total = priceForFlight * Convert.ToInt32(noTick);
             Random rnd = new Random();
-             Order order = new Order();
-            
+            Order order = new Order();
+          
                     order. flightId = fid;
                     order.orderId = rnd.Next().ToString();
                     order.NoTicket = Convert.ToInt32(noTick);
-                    order.TotalPrice = (flight.price).ToString();
+            order.TotalPrice = fprice;
                     order.custumerId = custID;
                     order.cardDate = cardDate;
                     order.cardNumber = cardNum;
                     order.cvv = cvv;
                     order.fullName = fullName;
-           
-                    
-                     return View(order);
+                     //ViewBag.TotalPrice = totalPrice;
+
+                    dal.SaveChanges();
+                    return View(order);
         }
+
+
+     
+       
 
 
 
@@ -55,30 +60,17 @@ namespace projectFlight.Controllers
             List<Order> objOrders = dal.Orders.ToList();
             OrderViewModel ovm = new OrderViewModel();
             ovm.Order = order;
-            //Flight f = dal.Flights.Find(order.flightId);
-            //Order order1 = new Order()
-            //{
-            //    TotalPrice = (f.price * Convert.ToInt32(order.NoTicket)).ToString()
-            // };
-
-
-            //string total;
-          
-            //Flight flight = dal.Flights.Find(order.flightId);
-            //int priceForFlight = flight.price;
-            //total = ((priceForFlight) * Convert.ToInt32(order.NoTicket)).ToString();
-            //order.TotalPrice = total;
+           
             if (ModelState.IsValid)
             {
 
                 dal.Orders.Add(order);
                 dal.SaveChanges();
-                //return RedirectToAction("BookOrder");
+             
             }
 
             Flight f = dal.Flights.Find(order.flightId);
            f.numberOfSeats =f.numberOfSeats- order.NoTicket;
-            //dal.Entry(f).State = System.Data.Entity.EntityState.Modified;
             dal.SaveChanges();
 
             return View(order);

@@ -66,11 +66,7 @@
                     </div>
                     <div class="flex flex-col gap-3">
 
-                        @*@Html.RadioButton(m => m.Flight.oneWay, "One way")
-                         @Html.RadioButton(m => m.Flight.oneWay, "Two ways")*@
-                        @*@Html.LabelFor(m => m.Flight.oneWay, "One way?")*@
-                        @*@Html.EditorFor(m => m.Flight.oneWay)*@
-                        @*@Html.CheckBoxFor(m => m.Flight.oneWay)*@
+                     
                         <span>One Way</span>
                         <input type="radio" name="radioButton" value="One Way" />
                         <span>Two Ways </span><input type="radio" name="radioButton" value="Two Ways" />
@@ -127,30 +123,31 @@
                             <td class="py-4 px-6">@f.timeFlight</td>
                             <td class="py-4 px-6">@f.dateBackFlight </td>
                             <td class="rounded-sm p-3">
-                               
-                                @if (!f.dateFlight.ToShortDateString().Contains(DateTime.Today.ToShortDateString()))
+                                @*(f.dateFlight.ToShortDateString().CompareTo(DateTime.Today.ToShortDateString())*@
+
+                                @if ((DateTime.Compare(f.dateFlight, DateTime.Today) > 0) || (DateTime.Compare(f.dateFlight, DateTime.Today) ==0  && (DateTime.Compare(DateTime.Parse(f.timeFlight),DateTime.Now.ToLocalTime())>0)))
                                 {
                                     if (f.numberOfSeats > 0)
 
 
-                                {
-                                    using (Html.BeginForm("Payment", "Order", FormMethod.Post))
                                     {
-                                        @Html.Hidden("fid", f.flightId)
-                                        @Html.Hidden("ffrom", f.flightFrom)
-                                        @Html.Hidden("fto", f.flightTo)
-                                        @Html.Hidden("fprice", f.price)
-                                        @Html.Hidden("fdateFlight", f.dateFlight)
-                                        @Html.Hidden("fdatebackflight", f.dateBackFlight)
-                                        <input id="Submit1" type="submit" value="Book a flight!" />
+                                        using (Html.BeginForm("Payment", "Order", FormMethod.Post))
+                                        {
+                                            @Html.Hidden("fid", f.flightId)
+                                            @Html.Hidden("ffrom", f.flightFrom)
+                                            @Html.Hidden("fto", f.flightTo)
+                                            @Html.Hidden("fprice", f.price)
+                                            @Html.Hidden("fdateFlight", f.dateFlight)
+                                            @Html.Hidden("fdatebackflight", f.dateBackFlight.GetValueOrDefault().ToString("dd/MM/yyyy"))
+                                            <input id="Submit1" type="submit" value="Book a flight!" />
 
+                                        }
                                     }
                                 }
+                                else
+                                {
+                                    <h1>Cannot book the flight,please choose another one!</h1>
                                 }
-                else
-                {
-                    <h1>Cannot book the flight,please try again!</h1>
-                }
                             </td>
 
 
@@ -169,6 +166,3 @@
 
 
 </html>
-@*new { id = f.flightId }*@
-@*@Html.ActionLink("Book a flight!", "BookOrder", new { id = f.flightId })*@
-@*Value?.ToString("dd/MM/yyyy"*@

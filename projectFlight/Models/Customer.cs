@@ -27,12 +27,13 @@ namespace projectFlight.Models
         [StringLength(50)]
         [Display(Name = "mail:")]
         [Required(ErrorMessage = "The email field is required")]
+        //[RegularExpression(@"^[\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$", ErrorMessage = "The mail is not as excpected!")]
         public string mail { get; set; }
 
         [StringLength(50, MinimumLength = 10)]
         [Display(Name = "Passport number:")]
         [Required(ErrorMessage = "The Passport number field is required")]
-        [RegularExpression(@"^[\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$", ErrorMessage = "The mail is not as excpected!")]
+        
         public string passportNum { get; set; }
 
     }

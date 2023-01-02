@@ -107,18 +107,22 @@ namespace projectFlight.Controllers
                    && !string.IsNullOrWhiteSpace(Request.Form["txtDate"])
                     && !string.IsNullOrWhiteSpace(Request.Form["txtDateBack"]))
                 {
+                   
+
                     fli = fli.Where(x =>
-                                   x.dateFlight.ToString() == valDate
-                                  && x.flightTo == valTo
-                                  && x.flightFrom == valFrom
                              
-                                  && x.oneWay == false
+                                   x.oneWay == false
+                                   && x.flightTo == valTo
+                                
 
                                  );
                     //not working 
                 }
             }
-
+            //x.dateFlight.ToString() == valDate
+            //                   && x.flightTo == valTo
+            //                   && x.flightFrom == valFrom
+            //                   && !(x.dateBackFlight.Value == null
 
             if (radioButton == "One Way")
             {

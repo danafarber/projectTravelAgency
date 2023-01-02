@@ -19,16 +19,16 @@
 
             @Html.LabelFor(m => m.Customer.passportNum)
             @Html.EditorFor(m => m.Customer.passportNum)
-            @Html.ValidationMessageFor(m => m.passportNum)
+            @Html.ValidationMessageFor(m => m.Customer.passportNum)
 
 
             @Html.LabelFor(m => m.Customer.custId)
             @Html.EditorFor(m => m.Customer.custId)
-            @Html.ValidationMessageFor(m => m.custId)
+            @Html.ValidationMessageFor(m => m.Customer.custId)
 
             @Html.LabelFor(m => m.Customer.mail)
             @Html.EditorFor(m => m.Customer.mail)
-            @Html.ValidationMessageFor(m => m.mail)
+            @Html.ValidationMessageFor(m => m.Customer.mail)
 
             <input id="Submit" type="submit" value="Sign in" />
         }
