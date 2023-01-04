@@ -10,39 +10,64 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/19bc22f122.js"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+
     <title>LoginToOrders</title>
 </head>
 <body>
+    <div id="header"
+         class="bg-gradient-to-br from-blue-900 to-blue-500 h-72"></div>
     <div>
-        @using (Html.BeginForm("SearchOrders", "Customer", FormMethod.Post))
-        {
-
-
-            <h1>enter id</h1><input id="Text1" type="text" name="custID" />
-
-            <input id="Submit3" type="submit" value="Go to my orders" />
-        }
-
-        <table class="table">
-            <tr>
-                <th>Customer ID</th>
-                <th>Flight Number</th>
-                <th>No. of Tickets</th>
-                <th>Total Price</th>
-                <th>Order ID </th>
-            </tr>
-            @foreach (var item in Model)
+        <div class="flex flex-col items-center justify-items-center">
+            @using (Html.BeginForm("SearchOrders", "Customer", FormMethod.Post))
             {
-                <tr>
-                    <td>@item.custumerId</td>
-                    <td>@item.flightId</td>
-                    <td>@item.NoTicket</td>
-                    <td>@item.TotalPrice</td>
-                    <td>@item.orderId</td>
-                </tr>
+
+
+                <h1 class="text-bold font-semibold text-2xl mt-5 border-b-2 border-blue-200 pb-2"> Please enter id</h1>
+                <input id="Text1" type="text" name="custID" class="border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" />
+                <div class="flex justify-between w-full mx-auto gap-10 mt-10">
+                    <input id="Submit3" type="submit" value="Watch my orders" class="flex justify-center items-center w-full rounded-sm p-3 mx-auto bg-gradient-to-r bg-blue-500 hover:bg-blue-80" />
+                </div>
             }
-        </table>
+        </div>
+        <div class="flex flex-col items-center justify-items-center">
+            <table class="table">
+                <tr>
+                    <th>Customer ID     </th>
+                    <th>Flight Number   </th>
+                    <th>No. of Tickets  </th>
+                    <th>Total Price     </th>
+                    <th>Order ID        </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.custumerId</td>
+                        <td>@item.flightId</td>
+                        <td>@item.NoTicket</td>
+                        <td>@item.TotalPrice</td>
+                        <td>@item.orderId</td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
+    <div>
+        <div class="flex flex-col items-center justify-items-center">
+
+            @Html.ActionLink("Go Back To Search", "Index", "Home")
+           
+        </div>
+    </div>
+
 </body>
 </html>
 

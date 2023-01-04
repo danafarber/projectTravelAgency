@@ -114,28 +114,39 @@ namespace projectFlight.Controllers
             return objC;
         }
 
-      
+
         [HttpGet]
         public ActionResult LoginToOrders()
         {
-           
+
             Dal1 dal = new Dal1();
             List<Order> orders = dal.Orders.ToList<Order>();
-          
+
             return View(orders);
 
-           
+
 
         }
         public ActionResult SearchOrders()
         {
             Dal1 dal = new Dal1();
-            string custID = Request.Form["CustID"]?.ToString();
-            var custOrders = dal.Orders.Where(o => o.custumerId == custID);
-            custOrders.ToList<Order>();
-            return View("LoginToOrders",custOrders);
+
+
+            //if (string.IsNullOrWhiteSpace(Request.Form["CustID"]))
+            //{
+
+            //    var custOrders = dal.Orders.ToList<Order>();
+            //}
+           
+                string custID = Request.Form["CustID"]?.ToString();
+
+
+                var custOrders = dal.Orders.Where(o => o.custumerId == custID);
+                custOrders.ToList<Order>();
+           
+            return View("LoginToOrders", custOrders);
         }
-       
+
 
 
     }

@@ -9,32 +9,68 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/19bc22f122.js"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+
+   
     <title>LoginCustomer</title>
 </head>
 <body>
+    <div id="header"
+         class="bg-gradient-to-br from-blue-900 to-blue-500 h-72"></div>
     <div>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+        <div class="flex flex-col items-center justify-items-center">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <h2 class="text-bold font-semibold text-2xl mt-5 border-b-2 border-blue-200 pb-2">
+                        Welcome!
+                    </h2>
+                    <h3 class="text-font-semibold text-2xl mt-5 border-b-2 border-blue-200 pb-2">
+                        Please login.
+                    </h3>
 
-            @Html.LabelFor(m => m.Customer.passportNum)
-            @Html.EditorFor(m => m.Customer.passportNum)
-            @Html.ValidationMessageFor(m => m.Customer.passportNum)
+                </div>
+
+                <div class="flex justify-between w-3/5 mx-auto gap-10">
+                    <div class="flex flex-col gap-3 w-full">
+                        @Html.LabelFor(m => m.Customer.passportNum, new { @class = "font-bold" })
+                        @Html.EditorFor(m => m.Customer.passportNum, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
+                        @Html.ValidationMessageFor(m => m.Customer.passportNum)
 
 
-            @Html.LabelFor(m => m.Customer.custId)
-            @Html.EditorFor(m => m.Customer.custId)
-            @Html.ValidationMessageFor(m => m.Customer.custId)
+                        @Html.LabelFor(m => m.Customer.custId, new { @class = "font-bold" })
+                        @Html.EditorFor(m => m.Customer.custId, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
+                        @Html.ValidationMessageFor(m => m.Customer.custId)
 
-            @Html.LabelFor(m => m.Customer.mail)
-            @Html.EditorFor(m => m.Customer.mail)
-            @Html.ValidationMessageFor(m => m.Customer.mail)
+                        @Html.LabelFor(m => m.Customer.mail, new { @class = "font-bold" })
+                        @Html.EditorFor(m => m.Customer.mail, new { @class = "border rounded-sm p-3 focus:border-blue-300 transition ease-in-out" })
+                        @Html.ValidationMessageFor(m => m.Customer.mail)
 
-            <input id="Submit" type="submit" value="Sign in" />
-        }
-    </div>
+                    </div>
+                </div>
+                <div class="flex justify-between w-full mx-auto gap-10 mt-10">
+                    <input id="Submit" type="submit" value="Sign in" class="flex justify-center items-center w-full rounded-sm p-3 mx-auto bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out" />
+                   
+                    </div>
+                    }
+                </div>
+            </div>
     <div>
-        @Html.ActionLink("Go To Search", "Index", "Home") |@Html.ActionLink("Watch My orders", "LoginToOrders","Customer")
+        <div class="flex flex-col items-center justify-items-center">
+
+            @Html.ActionLink("Go To Search", "Index", "Home")
+            <br />
+            @Html.ActionLink("Watch My orders", "LoginToOrders", "Customer")
+        </div>
     </div>
 </body>
 </html>

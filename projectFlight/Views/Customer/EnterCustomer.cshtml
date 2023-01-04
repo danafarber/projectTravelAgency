@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "EnterCustomer";
+    Layout = null;
 }
 
 
@@ -11,42 +12,79 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/19bc22f122.js"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+
+
     <title>Enter</title>
-    <link href="~/css/Style.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/myScript.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
+
 </head>
 <body>
+    <div id="header"
+         class="bg-gradient-to-br from-blue-900 to-blue-500 h-72"></div>
     <div>
-        @using (Html.BeginForm())
-        {
+        <div class="flex flex-col items-center justify-items-center">
+            @using (Html.BeginForm())
+            {
+                <div>
+                    <h2 class="text-bold font-semibold text-2xl mt-5 border-b-2 border-blue-200 pb-2">
+                        Welcome!
+                    </h2>
+                    <h3 class="text-font-semibold text-2xl mt-5 border-b-2 border-blue-200 pb-2">
+                        Please register.
+                    </h3>
 
-            @Html.LabelFor(m => m.firstName)
-            @Html.EditorFor(m => m.firstName)
-            @Html.ValidationMessageFor(m => m.firstName)
+                </div>
 
-            @Html.LabelFor(m => m.lastName)
-            @Html.EditorFor(m => m.lastName)
-            @Html.ValidationMessageFor(m => m.lastName)
+                <div class="flex justify-between w-3/5 mx-auto gap-10">
+                    <div class="flex flex-col gap-3 w-full">
+                        @Html.LabelFor(m => m.firstName)
+                        @Html.EditorFor(m => m.firstName)
+                        @Html.ValidationMessageFor(m => m.firstName)
 
-            @Html.LabelFor(m => m.passportNum)
-            @Html.EditorFor(m => m.passportNum)
-            @Html.ValidationMessageFor(m => m.passportNum)
+                        @Html.LabelFor(m => m.lastName)
+                        @Html.EditorFor(m => m.lastName)
+                        @Html.ValidationMessageFor(m => m.lastName)
 
-            @Html.LabelFor(m => m.custId)
-            @Html.EditorFor(m => m.custId)
-            @Html.ValidationMessageFor(m => m.custId)
+                        @Html.LabelFor(m => m.passportNum)
+                        @Html.EditorFor(m => m.passportNum)
+                        @Html.ValidationMessageFor(m => m.passportNum)
 
-            @Html.LabelFor(m => m.mail)
-            @Html.EditorFor(m => m.mail)
-            @Html.ValidationMessageFor(m => m.mail)
+                        @Html.LabelFor(m => m.custId)
+                        @Html.EditorFor(m => m.custId)
+                        @Html.ValidationMessageFor(m => m.custId)
 
-            <input id="Submit1" type="submit" value="Sign up" />
+                        @Html.LabelFor(m => m.mail)
+                        @Html.EditorFor(m => m.mail)
+                        @Html.ValidationMessageFor(m => m.mail)
 
-        }
+                    </div>
+                </div>
+                <div class="flex justify-between w-full mx-auto gap-10 mt-10">
+                    <input id="Submit1" type="submit" value="Sign up" class="flex justify-center items-center w-full rounded-sm p-3 mx-auto bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out" />
+                    
+                </div>
 
+            }
+        </div>
+
+    </div>
+
+    <div>
+        <div class="flex flex-col items-center justify-items-center">
+
+            @Html.ActionLink("Go To Search", "Index", "Home")
+            <br />
+            @Html.ActionLink("Log in", "LoginCustomer", "Customer")
+        </div>
     </div>
 </body>
 </html>

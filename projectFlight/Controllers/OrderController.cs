@@ -31,7 +31,10 @@ namespace projectFlight.Controllers
           
                     order. flightId = fid;
                     order.orderId = rnd.Next().ToString();
-                    order.NoTicket = Convert.ToInt32(noTick);
+            if (flight.numberOfSeats >= Convert.ToInt32(noTick))
+                order.NoTicket = Convert.ToInt32(noTick);
+            else
+                ViewBag["error"] = "cannoit book this number os seats";
                     order.TotalPrice = fprice;
                     order.custumerId = custID;
                     order.cardDate = cardDate;
@@ -70,6 +73,7 @@ namespace projectFlight.Controllers
             }
 
             Flight f = dal.Flights.Find(order.flightId);
+            f.soldCount = f.soldCount + order.NoTicket;
             f.numberOfSeats =f.numberOfSeats- order.NoTicket;
             dal.SaveChanges();
 
