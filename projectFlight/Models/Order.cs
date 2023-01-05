@@ -33,9 +33,9 @@ namespace projectFlight.Models
         [Display(Name = "ID:")]
         public string custumerId { get; set; }
 
-        [StringLength(16,MinimumLength =10,ErrorMessage ="Please enter a vailid credit card number")]
+        //[StringLength(50,MinimumLength =10,ErrorMessage ="Please enter a vailid credit card number")]
         [Display(Name = "Credit Card Number:")]
-        public string cardNumber { get; set; }
+        public virtual string cardNumber { get; set; }
 
         [StringLength(5, MinimumLength = 4, ErrorMessage = "Please enter a vailid credir card date")]
         [Display(Name = "Credit Card Date:")]

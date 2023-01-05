@@ -45,9 +45,9 @@ namespace projectFlight.Controllers
             return View();
         }
 
+        //https://localhost:44385/
 
 
-       
         public ActionResult Index(string radioButton)
         {
 
@@ -107,23 +107,25 @@ namespace projectFlight.Controllers
                    && !string.IsNullOrWhiteSpace(Request.Form["txtDate"])
                     && !string.IsNullOrWhiteSpace(Request.Form["txtDateBack"]))
                 {
-                   
+
+                    DateTime valDateParsed = DateTime.Parse(valDate);
+                    DateTime valDateBackParsed = DateTime.Parse(valDateBack);
+                    Console.WriteLine(valDateParsed.ToString());
 
                     fli = fli.Where(x =>
-                             
-                                   x.oneWay == false
-                                   && x.flightTo == valTo
-                                
 
+                                  
+                                    x.dateBackFlight != null
+                                    && x.oneWay == false
+                                    && x.flightTo == valTo
+                                    && x.flightFrom == valFrom
+                            
                                  );
-                    //not working 
+                 
                 }
             }
-            //x.dateFlight.ToString() == valDate
-            //                   && x.flightTo == valTo
-            //                   && x.flightFrom == valFrom
-            //                   && !(x.dateBackFlight.Value == null
 
+                 
             if (radioButton == "One Way")
             {
                 if (!string.IsNullOrWhiteSpace(Request.Form["txtFrom"])
@@ -132,11 +134,11 @@ namespace projectFlight.Controllers
                  && string.IsNullOrWhiteSpace(Request.Form["txtDateBack"]))
                 {
                     fli = fli.Where(x =>
-                                   x.dateFlight.ToString() == valDate
-                                  && x.flightTo == valTo
-                                  && x.flightFrom == valFrom
-                                  && x.dateBackFlight.Value == null
-                                  && x.oneWay == true
+                                         x.dateFlight.ToString() == valDate
+                                      && x.flightTo == valTo
+                                      && x.flightFrom == valFrom
+                                      && x.dateBackFlight.Value == null
+                                      && x.oneWay == true
                                   );
 
                 }

@@ -60,7 +60,7 @@
                     </div>
                     <div class="flex flex-col gap-3">
 
-                     
+
                         <span>One Way</span>
                         <input type="radio" name="radioButton" value="One Way" />
                         <span>Two Ways </span><input type="radio" name="radioButton" value="Two Ways" />
@@ -112,14 +112,14 @@
 
                             <td class="py-4 px-6">@f.flightFrom</td>
                             <td class="py-4 px-6">@f.flightTo</td>
-                            <td class="py-4 px-6">@f.price</td>
+                            <td class="py-4 px-6">@f.price $</td>
                             <td class="py-4 px-6">@f.dateFlight.ToShortDateString()</td>
                             <td class="py-4 px-6">@f.timeFlight</td>
                             <td class="py-4 px-6">@f.dateBackFlight </td>
                             <td class="rounded-sm p-3">
-                            
 
-                                @if ((DateTime.Compare(f.dateFlight, DateTime.Today) > 0) || (DateTime.Compare(f.dateFlight, DateTime.Today) ==0  && (DateTime.Compare(DateTime.Parse(f.timeFlight),DateTime.Now.ToLocalTime())>0)))
+
+                                @if ((DateTime.Compare(f.dateFlight, DateTime.Today) > 0) || (DateTime.Compare(f.dateFlight, DateTime.Today) == 0 && (DateTime.Compare(DateTime.Parse(f.timeFlight), DateTime.Now.ToLocalTime()) > 0)))
                                 {
                                     if (f.numberOfSeats > 0)
 
@@ -131,9 +131,9 @@
                                             @Html.Hidden("ffrom", f.flightFrom)
                                             @Html.Hidden("fto", f.flightTo)
                                             @Html.Hidden("fprice", f.price)
-                                            @Html.Hidden("fdateFlight", f.dateFlight)
+                                            @Html.Hidden("fdateFlight", f.dateFlight.ToString("MM/dd/yyyy"))
                                             @Html.Hidden("fdatebackflight", f.dateBackFlight.GetValueOrDefault().ToString("dd/MM/yyyy"))
-                                            <input id="Submit1" type="submit" value="Book a flight!" class="rounded-sm p-3 w-full bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out"/>
+                                            <input id="Submit1" type="submit" value="Book a flight!" class="rounded-sm p-3 w-full bg-gradient-to-r bg-blue-500 hover:bg-blue-800 text-white mb-0.5 cursor-pointer transition ease-in-out" />
 
                                         }
                                     }
@@ -160,3 +160,7 @@
 
 
 </html>
+
+
+
+
